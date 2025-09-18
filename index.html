@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reindirizzamento al test AI sequenziale</title>
+  <title>Reindirizzamento al test AI</title>
   <style>
     body {
       font-family: sans-serif;
@@ -13,36 +13,7 @@
     }
   </style>
   <script>
-    function assignSequentialLink() {
-      const links = [
-        "https://forms.gle/SvZfuREtWmKx97bL7",
-        "https://forms.gle/AJxs7HWbJiWvqXiPA",
-        "https://forms.gle/2p13e3p3FZttTkcX7",
-        "https://forms.gle/dA8NTvZrLg5N2seG9",
-        "https://forms.gle/UvtsXzuNqRdoD2846",
-        "https://forms.gle/VK4mxeH6zX4aTJuZA"
-      ];
-
-      // Recupera l'ultimo indice usato dal localStorage (o -1 se non esiste)
-      let lastIndex = parseInt(localStorage.getItem("lastFormIndex")) || -1;
-
-      // Calcola il prossimo indice
-      let nextIndex = (lastIndex + 1) % links.length;
-
-      // Salva il nuovo indice nel localStorage
-      localStorage.setItem("lastFormIndex", nextIndex);
-
-      // Reindirizza al link scelto
-      window.location.href = links[nextIndex];
-    }
-  </script>
-</head>
-<body onload="assignSequentialLink()">
-  <h1>Stiamo caricando il test per te...</h1>
-  <p>Se non vieni reindirizzato automaticamente, <a id="manual-link" href="#">clicca qui</a>.</p>
-
-  <script>
-    // Aggiorna anche il link manuale
+    // Lista dei moduli Google Forms
     const links = [
       "https://forms.gle/SvZfuREtWmKx97bL7",
       "https://forms.gle/AJxs7HWbJiWvqXiPA",
@@ -52,10 +23,22 @@
       "https://forms.gle/VK4mxeH6zX4aTJuZA"
     ];
 
-    let lastIndex = parseInt(localStorage.getItem("lastFormIndex")) || -1;
-    let nextIndex = (lastIndex + 1) % links.length;
-    document.getElementById('manual-link').href = links[nextIndex];
+    function redirectToRandomForm() {
+      const randomIndex = Math.floor(Math.random() * links.length);
+      const chosenLink = links[randomIndex];
+
+      // Imposta il link manuale di fallback
+      document.getElementById('manual-link').href = chosenLink;
+
+      // Reindirizza automaticamente
+      window.location.href = chosenLink;
+    }
   </script>
+</head>
+<body onload="redirectToRandomForm()">
+  <h1>Stiamo caricando il test per te...</h1>
+  <p>Se non vieni reindirizzato automaticamente, <a id="manual-link" href="#">clicca qui</a>.</p>
 </body>
 </html>
+
 
