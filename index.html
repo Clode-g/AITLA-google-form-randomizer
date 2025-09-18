@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reindirizzamento al test AI</title>
+  <title>Reindirizzamento al test AI random</title>
   <style>
     body {
       font-family: sans-serif;
@@ -13,7 +13,26 @@
     }
   </style>
   <script>
-    // Lista dei moduli Google Forms
+    function assignRandomLink() {
+      const links = [
+        "https://forms.gle/SvZfuREtWmKx97bL7",
+        "https://forms.gle/AJxs7HWbJiWvqXiPA",
+        "https://forms.gle/2p13e3p3FZttTkcX7",
+        "https://forms.gle/dA8NTvZrLg5N2seG9",
+        "https://forms.gle/UvtsXzuNqRdoD2846",
+        "https://forms.gle/VK4mxeH6zX4aTJuZA"
+      ];
+      const randomIndex = Math.floor(Math.random() * links.length);
+      window.location.href = links[randomIndex];
+    }
+  </script>
+</head>
+<body onload="assignRandomLink()">
+  <h1>Stiamo caricando il test per te...</h1>
+  <p>Se non vieni reindirizzato automaticamente, <a id="manual-link" href="#">clicca qui</a>.</p>
+
+  <script>
+    // Per sicurezza: metti anche il link manuale
     const links = [
       "https://forms.gle/SvZfuREtWmKx97bL7",
       "https://forms.gle/AJxs7HWbJiWvqXiPA",
@@ -22,23 +41,8 @@
       "https://forms.gle/UvtsXzuNqRdoD2846",
       "https://forms.gle/VK4mxeH6zX4aTJuZA"
     ];
-
-    function redirectToRandomForm() {
-      const randomIndex = Math.floor(Math.random() * links.length);
-      const chosenLink = links[randomIndex];
-
-      // Imposta il link manuale di fallback
-      document.getElementById('manual-link').href = chosenLink;
-
-      // Reindirizza automaticamente
-      window.location.href = chosenLink;
-    }
+    const randomIndex = Math.floor(Math.random() * links.length);
+    document.getElementById('manual-link').href = links[randomIndex];
   </script>
-</head>
-<body onload="redirectToRandomForm()">
-  <h1>Stiamo caricando il test per te...</h1>
-  <p>Se non vieni reindirizzato automaticamente, <a id="manual-link" href="#">clicca qui</a>.</p>
 </body>
 </html>
-
-
