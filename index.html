@@ -1,48 +1,37 @@
-<!DOCTYPE html>
-<html lang="it">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reindirizzamento al test AI random</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      margin-top: 100px;
-      color: #333;
-    }
-  </style>
-  <script>
-    function assignRandomLink() {
-      const links = [
-        "https://forms.gle/SvZfuREtWmKx97bL7",
-        "https://forms.gle/AJxs7HWbJiWvqXiPA",
-        "https://forms.gle/2p13e3p3FZttTkcX7",
-        "https://forms.gle/dA8NTvZrLg5N2seG9",
-        "https://forms.gle/UvtsXzuNqRdoD2846",
-        "https://forms.gle/VK4mxeH6zX4aTJuZA"
-      ];
-      const randomIndex = Math.floor(Math.random() * links.length);
-      window.location.href = links[randomIndex];
-    }
-  </script>
+   <script type="text/javascript">
+      let lastIndex = -1;
+
+      function assignRandomLink() {
+         // Array con i sei link
+         var links = [
+            "https://forms.gle/SvZfuREtWmKx97bL7",
+            "https://forms.gle/AJxs7HWbJiWvqXiPA",
+            "https://forms.gle/2p13e3p3FZttTkcX7",
+            "https://forms.gle/dA8NTvZrLg5N2seG9",
+            "https://forms.gle/UvtsXzuNqRdoD2846",
+            "https://forms.gle/VK4mxeH6zX4aTJuZA"
+         ];
+
+         // Genera un numero casuale, diverso dall'ultimo
+         var randomIndex;
+         do {
+            randomIndex = Math.floor(Math.random() * links.length);
+         } while(randomIndex === lastIndex);
+
+         lastIndex = randomIndex;
+
+         // Aggiorna il link manuale
+         document.getElementById('manual-link').href = links[randomIndex];
+
+         // Reindirizza automaticamente
+         window.location.href = links[randomIndex];
+      }
+   </script>
 </head>
 <body onload="assignRandomLink()">
-  <h1>Stiamo caricando il test per te...</h1>
-  <p>Se non vieni reindirizzato automaticamente, <a id="manual-link" href="#">clicca qui</a>.</p>
-
-  <script>
-    // Per sicurezza: metti anche il link manuale
-    const links = [
-      "https://forms.gle/SvZfuREtWmKx97bL7",
-      "https://forms.gle/AJxs7HWbJiWvqXiPA",
-      "https://forms.gle/2p13e3p3FZttTkcX7",
-      "https://forms.gle/dA8NTvZrLg5N2seG9",
-      "https://forms.gle/UvtsXzuNqRdoD2846",
-      "https://forms.gle/VK4mxeH6zX4aTJuZA"
-    ];
-    const randomIndex = Math.floor(Math.random() * links.length);
-    document.getElementById('manual-link').href = links[randomIndex];
-  </script>
+   <h1>Stiamo caricando il test per te...</h1>
+   <p>Se non vieni reindirizzato automaticamente, <a id="manual-link" href="#">clicca qui</a>.</p>
 </body>
 </html>
