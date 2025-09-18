@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reindirizzamento al test AI random</title>
+  <title>Reindirizzamento al test AI</title>
   <style>
     body {
       font-family: sans-serif;
@@ -13,7 +13,7 @@
     }
   </style>
   <script>
-    function assignRandomLink() {
+    function assignNextLink() {
       const links = [
         "https://forms.gle/SvZfuREtWmKx97bL7",
         "https://forms.gle/AJxs7HWbJiWvqXiPA",
@@ -22,27 +22,29 @@
         "https://forms.gle/UvtsXzuNqRdoD2846",
         "https://forms.gle/VK4mxeH6zX4aTJuZA"
       ];
-      const randomIndex = Math.floor(Math.random() * links.length);
-      window.location.href = links[randomIndex];
+
+      // Legge l'ultimo modulo visitato dal localStorage
+      let lastIndex = parseInt(localStorage.getItem("lastFormIndex")) || -1;
+
+      // Seleziona un modulo casuale, diverso dall'ultimo
+      let nextIndex;
+      do {
+        nextIndex = Math.floor(Math.random() * links.length);
+      } while(nextIndex === lastIndex);
+
+      // Salva il nuovo indice
+      localStorage.setItem("lastFormIndex", nextIndex);
+
+      // Aggiorna il link manuale
+      document.getElementById("manual-link").href = links[nextIndex];
+
+      // Reindirizza automaticamente
+      window.location.href = links[nextIndex];
     }
   </script>
 </head>
-<body onload="assignRandomLink()">
+<body onload="assignNextLink()">
   <h1>Stiamo caricando il test per te...</h1>
   <p>Se non vieni reindirizzato automaticamente, <a id="manual-link" href="#">clicca qui</a>.</p>
-
-  <script>
-    // Per sicurezza: metti anche il link manuale
-    const links = [
-      "https://forms.gle/SvZfuREtWmKx97bL7",
-      "https://forms.gle/AJxs7HWbJiWvqXiPA",
-      "https://forms.gle/2p13e3p3FZttTkcX7",
-      "https://forms.gle/dA8NTvZrLg5N2seG9",
-      "https://forms.gle/UvtsXzuNqRdoD2846",
-      "https://forms.gle/VK4mxeH6zX4aTJuZA"
-    ];
-    const randomIndex = Math.floor(Math.random() * links.length);
-    document.getElementById('manual-link').href = links[randomIndex];
-  </script>
 </body>
 </html>
